@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDbHelper = new CountryDbHelper(getApplicationContext());
-        
+
 
         list = (ListView) findViewById(R.id.list);
         btn_add = (Button) findViewById(R.id.btn_add);
@@ -31,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                putValues("Test",1);
+                readValues();
             }
         });
 
     }
 
 
-    public void putValues(String id, String title, int code) {
+    public void putValues(String title, int code) {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 CountryEntry.COLUMN_NAME_NULLABLE,
                 values);
 
-        System.out.print(newRowId);
+        System.out.print("SQLTest  write : " + newRowId);
 
     }
 
@@ -86,6 +87,6 @@ public class MainActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(CountryEntry._ID));
-        System.out.print(itemId);
+        System.out.print("SQLTest  Read : " + itemId);
     }
 }
