@@ -2,14 +2,14 @@ package tkosen.com.android_sql_sample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class FragmentDialog extends Fragment  implements View.OnClickListener{
+public class FragmentDialog extends DialogFragment implements View.OnClickListener{
     private static final String ARG_DATA_FROM_ACTIVTY = "dataFromActivity";
     private String mDataFromActivity;
     private OnFragmentInteractionListener mListener;
@@ -21,10 +21,10 @@ public class FragmentDialog extends Fragment  implements View.OnClickListener{
         // Required empty public constructor
     }
 
-    public static FragmentDialog newInstance(String param1, String param2) {
+    public static FragmentDialog newInstance(String dataFromActivity) {
         FragmentDialog fragment = new FragmentDialog();
         Bundle args = new Bundle();
-        args.putString(ARG_DATA_FROM_ACTIVTY, param1);
+        args.putString(ARG_DATA_FROM_ACTIVTY, dataFromActivity);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +47,7 @@ public class FragmentDialog extends Fragment  implements View.OnClickListener{
         edt_population = (EditText) vi.findViewById(R.id.edt_population);
 
         btn_save = (Button) vi.findViewById(R.id.btn_save);
+        btn_save.setText(mDataFromActivity);
         return vi;
     }
 
