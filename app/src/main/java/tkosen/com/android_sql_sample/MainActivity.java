@@ -22,12 +22,22 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
     Button btn_add;
     CountryDbHelper mDbHelper;
 
+    CountryAdapter countryAdapter;
+    private static final int COUNTRY_LOADER = 0;
+
+    private static final String[] COUNTRIES_COLUMNS = { CountryEntry.COLUMN_NAME_COUNTRY_NAME
+            ,CountryEntry.COLUMN_NAME_COUNTRY_CODE
+            ,CountryEntry.COLUMN_NAME_COUNTRY_CONTINENT
+            ,CountryEntry.COLUMN_NAME_COUNTRY_POPULATION };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDbHelper = new CountryDbHelper(getApplicationContext());
 
+        countryAdapter = new CountryAdapter(this,null,0);
+        getSupportLoaderManager().initLoader(COUNTRY_LOADER,null,this);
 
         list = (ListView) findViewById(R.id.list);
         btn_add = (Button) findViewById(R.id.btn_add);
@@ -38,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
                   FragmentDialog.newInstance("Kaydet").show(getSupportFragmentManager(),"FragmentDialog");
             }
         });
+
+        list.setAdapter(countryAdapter);
 
     }
 
