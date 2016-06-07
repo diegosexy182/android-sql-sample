@@ -62,7 +62,7 @@ public class FragmentDialog extends DialogFragment implements View.OnClickListen
                         edt_continent.getText().toString(),
                         edt_population.getText().toString());
 
-                dismiss();
+                dismiss();;
                 break;
         }
     }
