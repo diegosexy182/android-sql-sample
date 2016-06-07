@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
--import static tkosen.com.android_sql_sample.data.CountryContract.*;
+import static tkosen.com.android_sql_sample.data.CountryContract.*;
 
 /**
  * Created by tctkosen on 06/06/16.
@@ -32,7 +32,7 @@ public class CountryDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_ENTRIES);
     }
-    
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         final String SQL_CREATE_ENTRIES = "DROP TABLE IF EXISTS " + CountryEntry.TABLE_NAME;
         db.execSQL(SQL_CREATE_ENTRIES);
