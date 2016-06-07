@@ -48,6 +48,7 @@ public class FragmentDialog extends DialogFragment implements View.OnClickListen
 
         btn_save = (Button) vi.findViewById(R.id.btn_save);
         btn_save.setText(mDataFromActivity);
+        btn_save.setOnClickListener(this);
         return vi;
     }
 
@@ -60,6 +61,8 @@ public class FragmentDialog extends DialogFragment implements View.OnClickListen
                         edt_code.getText().toString(),
                         edt_continent.getText().toString(),
                         edt_population.getText().toString());
+
+                dismiss();
                 break;
         }
     }
