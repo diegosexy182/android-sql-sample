@@ -2,10 +2,12 @@ package tkosen.com.android_sql_sample;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  FragmentDialog.newInstance("Kaydet").show(getSupportFragmentManager(),"FragmentDialog");
+                  FragmentDialog.newInstance("Kaydet","Lütfen aşağıdaki alanları doldurun.").show(getSupportFragmentManager(),"FragmentDialog");
             }
         });
 
@@ -83,17 +85,29 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        Intent intent = getIntent();
+        if (intent == null) {
+            return null;
+        }
+        String sortOrder = CountryEntry.COLUMN_NAME_COUNTRY_POPULATION+ " ASC";
+
+        // Now create and return a CursorLoader that will take care of
+        // creating a Cursor for the data being displayed.
+        return new CursorLoader(this, CountryEntry.CONTENT_URI
+                ,COUNTRIES_COLUMNS
+                , null
+                , null
+                , sortOrder);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        countryAdapter.swapCursor(cursor);
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
+    public void onLoaderReset(Loader loader) {
+        countryAdapter.swapCursor(null);
     }
 }

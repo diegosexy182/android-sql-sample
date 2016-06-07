@@ -11,7 +11,9 @@ import android.widget.EditText;
 
 public class FragmentDialog extends DialogFragment implements View.OnClickListener{
     private static final String ARG_DATA_FROM_ACTIVTY = "dataFromActivity";
+    private static final String ARG_TITLE = "dataFromActivity";
     private String mDataFromActivity;
+    private String mTitle;
     private OnFragmentInteractionListener mListener;
 
     EditText edt_name,edt_code,edt_continent,edt_population;
@@ -21,10 +23,11 @@ public class FragmentDialog extends DialogFragment implements View.OnClickListen
         // Required empty public constructor
     }
 
-    public static FragmentDialog newInstance(String dataFromActivity) {
+    public static FragmentDialog newInstance(String dataFromActivity,String title) {
         FragmentDialog fragment = new FragmentDialog();
         Bundle args = new Bundle();
         args.putString(ARG_DATA_FROM_ACTIVTY, dataFromActivity);
+        args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,12 +37,15 @@ public class FragmentDialog extends DialogFragment implements View.OnClickListen
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mDataFromActivity = getArguments().getString(ARG_DATA_FROM_ACTIVTY);
+            mTitle = getArguments().getString(ARG_TITLE);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vi = inflater.inflate(R.layout.dialog_fragment,container,false);
+
+        getDialog().setTitle(mTitle);
 
         edt_code = (EditText) vi.findViewById(R.id.edt_code);
         edt_name = (EditText) vi.findViewById(R.id.edt_name);
