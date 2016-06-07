@@ -1,5 +1,6 @@
 package tkosen.com.android_sql_sample.data;
 
+import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -116,6 +117,31 @@ public class ContryProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        final SQLiteDatabase db = countryDbHelper.getWritableDatabase();
+        final int match = sUriMatcher.match(uri);
+        int rowsUpdated;
+
+        switch (match) {
+            case COUNTRY:
+                rowsUpdated = db.update(CountryContract.CountryEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsUpdated;
+    }
+
+
+    @Override
+    @TargetApi(11)
+    public void shutdown() {
+        countryDbHelper.close();
+        super.shutdown();
     }
 }
