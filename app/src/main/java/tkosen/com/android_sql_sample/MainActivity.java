@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                putValues("Test",1);
+                putValues("Test",90);
                 readValues();
             }
         });

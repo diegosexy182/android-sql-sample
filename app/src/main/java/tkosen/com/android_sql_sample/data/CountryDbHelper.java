@@ -18,15 +18,17 @@ public class CountryDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
-        final String TEXT_TYPE = " TEXT NOT NULL";
-        final String INTEGER_TYPE = " INTEGER NOT NULL";
+        final String TEXT_TYPE_NOT_NULL = " TEXT NOT NULL";
+        final String TEXT_TYPE = " TEXT";
+        final String INTEGER_TYPE_NOT_NULL = " INTEGER NOT NULL";
+        final String INTEGER_TYPE = " INTEGER";
 
         final String COMMA_SEP = ",";
         final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + CountryEntry.TABLE_NAME + " (" +
                         CountryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        CountryEntry.COLUMN_NAME_COUNTRY_NAME + TEXT_TYPE + COMMA_SEP +
-                        CountryEntry.COLUMN_NAME_COUNTRY_CODE + INTEGER_TYPE + COMMA_SEP +
+                        CountryEntry.COLUMN_NAME_COUNTRY_NAME + TEXT_TYPE_NOT_NULL + COMMA_SEP +
+                        CountryEntry.COLUMN_NAME_COUNTRY_CODE + INTEGER_TYPE_NOT_NULL + COMMA_SEP +
                         CountryEntry.COLUMN_NAME_COUNTRY_CONTINENT + TEXT_TYPE + COMMA_SEP +
                         CountryEntry.COLUMN_NAME_COUNTRY_POPULATION + INTEGER_TYPE + " )";
 
