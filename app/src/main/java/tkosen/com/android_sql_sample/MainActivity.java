@@ -5,10 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import tkosen.com.android_sql_sample.data.CountryDbHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentDialog.OnFragmentInteractionListener {
     ListView list;
     Button btn_add;
     CountryDbHelper mDbHelper;
@@ -33,4 +34,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onButtonClicked(String name, String code, String continent, String population) {
+        Toast.makeText(this,name + " "  + code + " " + continent + " " +population,Toast.LENGTH_SHORT).show();
+    }
 }
