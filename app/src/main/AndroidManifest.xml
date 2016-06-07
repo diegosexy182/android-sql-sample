@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="tkosen.com.sqlsample.provider"
+            android:name=".data.ContryProvider" />
     </application>
 
 </manifest>
