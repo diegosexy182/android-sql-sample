@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:authorities="tkosen.com.sqlsample.provider"
+            android:authorities="tkosen.com.android_sql_sample.provider"
             android:name=".data.ContryProvider" />
     </application>
 

@@ -15,7 +15,7 @@ public final class CountryContract {
 
     /* Inner class that defines the table contents */
     public static abstract class CountryEntry implements BaseColumns {
-        public static final String CONTENT_AUTHORITY = "tkosen.com.sqlsample.provider";
+        public static final String CONTENT_AUTHORITY = "tkosen.com.android_sql_sample.provider";
         public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
         public static final String PATH_COUNTRY = "country";
 
